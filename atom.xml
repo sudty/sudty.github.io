@@ -6,7 +6,7 @@
   <link href="http://sufty.top/atom.xml" rel="self"/>
   
   <link href="http://sufty.top/"/>
-  <updated>2021-09-16T11:54:53.347Z</updated>
+  <updated>2021-09-16T14:23:58.799Z</updated>
   <id>http://sufty.top/</id>
   
   <author>
@@ -21,11 +21,13 @@
     <link href="http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6/"/>
     <id>http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6/</id>
     <published>2021-09-16T11:54:53.000Z</published>
-    <updated>2021-09-16T11:54:53.347Z</updated>
+    <updated>2021-09-16T14:23:58.799Z</updated>
     
     
     
     
+    
+    <category term="-插件" scheme="http://sufty.top/tags/%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
@@ -34,7 +36,7 @@
     <link href="http://sufty.top/2021/09/14/%E6%B5%8B%E8%AF%95/"/>
     <id>http://sufty.top/2021/09/14/%E6%B5%8B%E8%AF%95/</id>
     <published>2021-09-14T12:23:16.000Z</published>
-    <updated>2021-09-16T14:16:02.353Z</updated>
+    <updated>2021-09-16T14:23:20.950Z</updated>
     
     <content type="html"><![CDATA[<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>供测试</p>]]></content>
     
@@ -48,7 +50,7 @@
     
     
     
-    <category term="-测试 -Testing" scheme="http://sufty.top/tags/%E6%B5%8B%E8%AF%95-Testing/"/>
+    <category term="-Testing" scheme="http://sufty.top/tags/Testing/"/>
     
   </entry>
   
