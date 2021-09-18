@@ -6,7 +6,7 @@
   <link href="http://sufty.top/atom.xml" rel="self"/>
   
   <link href="http://sufty.top/"/>
-  <updated>2021-09-18T13:30:03.626Z</updated>
+  <updated>2021-09-18T13:38:16.375Z</updated>
   <id>http://sufty.top/</id>
   
   <author>
@@ -18,17 +18,17 @@
   
   <entry>
     <title>谷歌浏览器常用插件</title>
-    <link href="http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
-    <id>http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8/</id>
+    <link href="http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/"/>
+    <id>http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/</id>
     <published>2021-09-16T11:54:53.000Z</published>
-    <updated>2021-09-18T13:30:03.626Z</updated>
+    <updated>2021-09-18T13:38:16.375Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="谷歌浏览器插件"><a href="#谷歌浏览器插件" class="headerlink" title="谷歌浏览器插件"></a>谷歌浏览器插件</h2><h3 id="打开谷歌浏览器开发模式"><a href="#打开谷歌浏览器开发模式" class="headerlink" title="打开谷歌浏览器开发模式"></a>打开谷歌浏览器开发模式</h3><p>  设置 →扩展程序 →开发者模式</p><h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><h3 id="1-科学上网"><a href="#1-科学上网" class="headerlink" title="1.科学上网"></a>1.科学上网</h3><p>​    首先切换国内能使用的搜索引擎（如百度,bing等)，搜索下载<a href="https://iguge.xyz/">igg谷歌访问助手</a>。</p><p>​    打开扩展程序页面，将下载得到的插件（.crx后缀）拉入。</p><h3 id="2-插件商店"><a href="#2-插件商店" class="headerlink" title="2.插件商店"></a>2.插件商店</h3><p>​    安装了igg谷歌访问助手，可以使用谷歌官方的插件商店，<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">chrome网上应用店</a>，找到自己喜欢的插件后，可通过”添加至chrome”直接安装。</p><p>​    未安装igg谷歌访问助手，可通过第三方插件商店（如<a href="https://chrome.zzzmh.cn/">极简插件</a>）下载插件（.crx文件），拉入扩展程序页面进行安装。</p><h3 id="3-个人使用的插件"><a href="#3-个人使用的插件" class="headerlink" title="3.个人使用的插件"></a>3.个人使用的插件</h3><ul><li>油猴（Tampermonkey）：chrome浏览器必备！可在 <a href="https://greasyfork.org/zh-CN">Greasy Fork</a>内下载使用各类脚本，扩展chrome浏览器的功能，如屏蔽广告,刷网课,解除网站复制限制,解除b站地区限制等。</li><li>AdGuard/Adblock Plus：广告拦截，可自定义拦截。</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="打开谷歌浏览器开发模式"><a href="#打开谷歌浏览器开发模式" class="headerlink" title="打开谷歌浏览器开发模式"></a>打开谷歌浏览器开发模式</h3><p>  设置 →扩展程序 →开发者模式</p><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="1-科学上网"><a href="#1-科学上网" class="headerlink" title="1.科学上网"></a>1.科学上网</h3><p>  首先切换国内能使用的搜索引擎（如百度,bing等)，搜索下载<a href="https://iguge.xyz/">igg谷歌访问助手</a>。</p><p>  打开扩展程序页面，将下载得到的插件（.crx后缀文件）拉入。</p><h3 id="2-插件商店"><a href="#2-插件商店" class="headerlink" title="2.插件商店"></a>2.插件商店</h3><p>  安装了igg谷歌访问助手，可以使用谷歌官方的插件商店，<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">chrome网上应用店</a>，找到自己喜欢的插件后，可通过”添加至chrome”直接安装。</p><p>  未安装igg谷歌访问助手，可通过第三方插件商店（如<a href="https://chrome.zzzmh.cn/">极简插件</a>）下载插件（.crx文件），拉入扩展程序页面进行安装。</p><h3 id="3-个人使用的插件"><a href="#3-个人使用的插件" class="headerlink" title="3.个人使用的插件"></a>3.个人使用的插件</h3><ul><li>油猴（Tampermonkey）：chrome浏览器必备！可在 <a href="https://greasyfork.org/zh-CN">Greasy Fork</a>内下载使用各类脚本，扩展chrome浏览器的功能，如屏蔽广告,刷网课,解除网站复制限制,解除b站地区限制等。</li><li>AdGuard/Adblock Plus：广告拦截，可自定义拦截。</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;谷歌浏览器插件&quot;&gt;&lt;a href=&quot;#谷歌浏览器插件&quot; class=&quot;headerlink&quot; title=&quot;谷歌浏览器插件&quot;&gt;&lt;/a&gt;谷歌浏览器插件&lt;/h2&gt;&lt;h3 id=&quot;打开谷歌浏览器开发模式&quot;&gt;&lt;a href=&quot;#打开谷歌浏览器开发模式&quot; class=&quot;he</summary>
+    <summary type="html">&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h2&gt;&lt;h3 id=&quot;打开谷歌浏览器开发模式&quot;&gt;&lt;a href=&quot;#打开谷歌浏览器开发模式&quot; class=&quot;headerlink&quot; ti</summary>
       
     
     
