@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://sufty.top/2021/09/19/markdown/</loc>
+    
+    <lastmod>2021-09-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://sufty.top/2021/09/16/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/</loc>
     
     <lastmod>2021-09-18</lastmod>
@@ -32,7 +39,7 @@
 
   <url>
     <loc>http://sufty.top/</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2021-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -40,14 +47,21 @@
   
   <url>
     <loc>http://sufty.top/tags/%E6%8F%92%E4%BB%B6/</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2021-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://sufty.top/tags/Testing/</loc>
-    <lastmod>2021-09-18</lastmod>
+    <lastmod>2021-09-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://sufty.top/tags/markdown/</loc>
+    <lastmod>2021-09-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

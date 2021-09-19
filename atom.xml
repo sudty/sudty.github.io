@@ -6,7 +6,7 @@
   <link href="http://sufty.top/atom.xml" rel="self"/>
   
   <link href="http://sufty.top/"/>
-  <updated>2021-09-18T14:18:22.855Z</updated>
+  <updated>2021-09-19T10:48:00.599Z</updated>
   <id>http://sufty.top/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown</title>
+    <link href="http://sufty.top/2021/09/19/markdown/"/>
+    <id>http://sufty.top/2021/09/19/markdown/</id>
+    <published>2021-09-19T10:10:56.000Z</published>
+    <updated>2021-09-19T10:48:00.599Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h2><h3 id="首行缩进"><a href="#首行缩进" class="headerlink" title="首行缩进"></a>首行缩进</h3><p> &ensp; &ensp;markdown不支持自动首行缩进，可通过 <code>&amp;ensp;</code>实现。每次输入一个 <code>&amp;ensp;</code>，都代表缩进一字符。</p><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><p> &ensp; &ensp;段落换行，须在端末后留下两个或以上空格，如：</p><h3 id="无空格"><a href="#无空格" class="headerlink" title="无空格"></a>无空格</h3><p>会当临绝顶，</p><p>一览众山小。</p><h3 id="有空格"><a href="#有空格" class="headerlink" title="有空格"></a>有空格</h3><p>会当临绝顶，  </p><p>一览众山小。</p><h3 id="插入网址"><a href="#插入网址" class="headerlink" title="插入网址"></a>插入网址</h3><p> &ensp; &ensp;使点击的词自动跳转到某一网站，如<a href="https://www.baidu.com/">百度</a>。语法为</p><p><code>[文字](网址)</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;markdown&quot;&gt;&lt;a href=&quot;#markdown&quot; class=&quot;headerlink&quot; title=&quot;markdown&quot;&gt;&lt;/a&gt;markdown&lt;/h2&gt;&lt;h3 id=&quot;首行缩进&quot;&gt;&lt;a href=&quot;#首行缩进&quot; class=&quot;headerlink&quot; </summary>
+      
+    
+    
+    
+    
+    <category term="-markdown" scheme="http://sufty.top/tags/markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>谷歌浏览器插件</title>
