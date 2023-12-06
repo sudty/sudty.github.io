@@ -4,17 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>suftyのBlog</title>
+  <title>TCP报文 | suftyのBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="仅用于日常学习分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="suftyのBlog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="TCP 报文由首部和数据两部分组成，数据部分如果是 HTTP 协议就是 HTTP 报文，所以主要看 TCP 首部，TCP 首部中的各个字段指示决定 TCP 的工作原理。  源端口和目的端口源端口就是客户端发起请求的端口号，目的端口就是接收请求和发送响应的端口，例如 HTTP 协议的服务器响应端口就是80或者443等。 序号 SeqTCP 连接是面向字节流的，也就是组成 TCP 报文的最小单位是字节">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP报文">
+<meta property="og:url" content="http://example.com/2023/12/06/Tcp%E6%8A%A5%E6%96%87/index.html">
 <meta property="og:site_name" content="suftyのBlog">
-<meta property="og:description" content="仅用于日常学习分享">
+<meta property="og:description" content="TCP 报文由首部和数据两部分组成，数据部分如果是 HTTP 协议就是 HTTP 报文，所以主要看 TCP 首部，TCP 首部中的各个字段指示决定 TCP 的工作原理。  源端口和目的端口源端口就是客户端发起请求的端口号，目的端口就是接收请求和发送响应的端口，例如 HTTP 协议的服务器响应端口就是80或者443等。 序号 SeqTCP 连接是面向字节流的，也就是组成 TCP 报文的最小单位是字节">
 <meta property="og:locale">
+<meta property="og:image" content="https://icodex.me/assets/images/9rzlJf-4831d39dd3908d461b25a324be57aa52.png">
+<meta property="og:image" content="https://icodex.me/assets/images/image-20200804181002828-c4b8b1e834ce68e4157c4896bec82a64.png">
+<meta property="article:published_time" content="2023-12-06T03:42:27.973Z">
+<meta property="article:modified_time" content="2023-12-06T03:55:59.823Z">
 <meta property="article:author" content="chen">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://icodex.me/assets/images/9rzlJf-4831d39dd3908d461b25a324be57aa52.png">
   
     <link rel="alternate" href="/atom.xml" title="suftyのBlog" type="application/atom+xml">
   
@@ -73,9 +78,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Tcp报文" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Tcp报文" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/12/06/Tcp%E6%8A%A5%E6%96%87/" class="article-date">
   <time class="dt-published" datetime="2023-12-06T03:42:27.973Z" itemprop="datePublished">2023-12-06</time>
@@ -88,8 +91,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/06/Tcp%E6%8A%A5%E6%96%87/">TCP报文</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      TCP报文
     </h1>
   
 
@@ -140,61 +143,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-MultipartFile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/10/16/MultipartFile/" class="article-date">
-  <time class="dt-published" datetime="2023-10-16T10:15:42.241Z" itemprop="datePublished">2023-10-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/10/16/MultipartFile/">MultipartFile</a>
-    </h1>
+    <a href="/2023/10/16/MultipartFile/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MultipartFile</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>  在使用SpringMVC上传文件的时候，前台传到后台的文件可以是<em><strong>CommonsMultipartFile</strong></em>类型的，也可以是<em><strong>MultipartFile</strong></em>类型，但都无法直接转化为<em><strong>File</strong></em>类型。</p>
-<p>  SpringMVC提供了一种方法可以将传过来的文件直接上传到File指定的文件路径下（new File（path）），<em><strong>MultipartFile.<em><strong>transferTo（</strong></em>File</strong></em>），这样就可以直接将前台传过来的文件直接存在服务器指定的路径下。</p>
-<p>  通过这种思路，transferTo（）的参数需要指定一个File，那意味这需要指定路径，将会在指定的路径下生成文件，那么将这个文件通过new File（path），得到的就是File类型的了。</p>
-<p>  在不希望设置路径，也不希望生成文件的情况下可以使用以下两种方法来转换：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> File <span class="title function_">convert</span><span class="params">(MultipartFile file)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">File</span> <span class="variable">convFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(file.getOriginalFilename());  </span><br><span class="line"></span><br><span class="line">convFile.createNewFile();</span><br><span class="line"></span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(convFile);</span><br><span class="line"></span><br><span class="line">fos.write(file.getBytes());  </span><br><span class="line"></span><br><span class="line">fos.close();</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> convFile;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<br>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> File <span class="title function_">multipartToFile</span><span class="params">(MultipartFile multipart)</span> <span class="keyword">throws</span> IllegalStateException, IOException&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">File</span> <span class="variable">convFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>( multipart.getOriginalFilename());</span><br><span class="line"></span><br><span class="line">multipart.transferTo(convFile);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> convFile;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>第二种方式相对于第一种较为简单，也更为较快。</p>
-<p>作者：凉初透的风<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9262ef452abe">https://www.jianshu.com/p/9262ef452abe</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/10/16/MultipartFile/" data-id="clpm1alzc0000esuz39ebe9dl" data-title="MultipartFile" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
