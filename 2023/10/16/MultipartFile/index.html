@@ -14,7 +14,7 @@
 <meta property="og:description" content="MultipartFile  在使用SpringMVC上传文件的时候，前台传到后台的文件可以是*CommonsMultipartFile*类型的，也可以是*MultipartFile**类型，但都无法直接转化为File***类型。   SpringMVC提供了一种方法可以将传过来的文件直接上传到File指定的文件路径下（new File（path）），**MultipartFile.*transf">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-16T10:15:42.241Z">
-<meta property="article:modified_time" content="2023-12-01T02:56:59.448Z">
+<meta property="article:modified_time" content="2023-12-01T05:54:14.701Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -101,17 +101,10 @@
 <p>  SpringMVC提供了一种方法可以将传过来的文件直接上传到File指定的文件路径下（new File（path）），**<em>MultipartFile.*<strong>transferTo（</strong></em>File***），这样就可以直接将前台传过来的文件直接存在服务器指定的路径下。</p>
 <p>  通过这种思路，transferTo（）的参数需要指定一个File，那意味这需要指定路径，将会在指定的路径下生成文件，那么将这个文件通过new File（path），得到的就是File类型的了。</p>
 <p>  在不希望设置路径，也不希望生成文件的情况下可以使用以下两种方法来转换：</p>
-<blockquote>
-<p>public File convert(MultipartFile file){</p>
-<p>  File convFile &#x3D; new File(file.getOriginalFilename());  </p>
-<p>  convFile.createNewFile();</p>
-<p>  FileOutputStream fos &#x3D; new FileOutputStream(convFile);</p>
-<p>  fos.write(file.getBytes());  </p>
-<p>  fos.close();</p>
-<p>  return convFile;</p>
-<p>}</p>
-</blockquote>
-<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> File <span class="title function_">convert</span><span class="params">(MultipartFile file)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">File</span> <span class="variable">convFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(file.getOriginalFilename());  </span><br><span class="line"></span><br><span class="line">convFile.createNewFile();</span><br><span class="line"></span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(convFile);</span><br><span class="line"></span><br><span class="line">fos.write(file.getBytes());  </span><br><span class="line"></span><br><span class="line">fos.close();</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> convFile;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <blockquote>
 <p>public File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException{</p>
 <p>  File convFile &#x3D; new File( multipart.getOriginalFilename());</p>
@@ -134,20 +127,6 @@
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/2023/11/18/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
   
 </article>
 
@@ -168,7 +147,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li></ul>
     </div>
   </div>
 
@@ -179,10 +158,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2023/11/18/hello-world/">Hello World</a>
-          </li>
         
           <li>
             <a href="/2023/10/16/MultipartFile/">MultipartFile</a>
