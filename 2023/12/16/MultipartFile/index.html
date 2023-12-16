@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>suftyのBlog</title>
+  <title>MultipartFile - suftyのBlog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="Share knowledge with you">
+  <meta name="description" content="  在使用SpringMVC上传文件的时候，前台传到后...">
   <meta name="author" content="chen">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -57,7 +57,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: true,
+      isHome: false,
       fancybox: true,
       pjax: false,
       loading: {
@@ -142,6 +142,8 @@
   <nav class="navbar">
     <div class="left">
       
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
       
       
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
@@ -150,7 +152,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center"> </div>
+    <div class="center">MultipartFile</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -166,7 +168,7 @@
       <i class="iconfont iconbaseline-close-px"></i>
     </div>
     <ul class="menu-content"><li class="menu-item">
-        <a href="/ " class="underline active"> 首页</a>
+        <a href="/ " class="underline "> 首页</a>
       </li><li class="menu-item">
         <a href="/archives/ " class="underline "> 归档</a>
       </li><li class="menu-item">
@@ -182,102 +184,75 @@
   </div>
 </nav>
   <main id="main">
-  
-    <div class="preview">
-  <!-- <nav class="navbar j-navbar-menu">
-    <i class="iconfont iconmenu"></i>
-  </nav> -->
-  <div class="preview-image">
-    
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">MultipartFile</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 16, 2023</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>957</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
         
-              <div class="preview-overlay">
-                <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                  <defs>
-                    <path id="gentle-wave"
-                      d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                  </defs>
-                  <g class="preview-parallax">
-                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb),0.7"></use>
-                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb),0.5)"></use>
-                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb),0.3)"></use>
-                    <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-background)"></use>
-                  </g>
-                </svg>
-              </div>
-              
-  </div>
-  <div class="preview-motto-wrapper">
-    <h2 class="preview-motto" id="motto">
-      
-    </h2>
-    
-      <span class="preview-cursor">_</span>
-      
-  </div>
-  <div class="preview-scroll">
-    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
-  </div>
-</div>
-  
-  <div class="container" id="container">
-    <section class="row post">
-  
-    
+        <p>  在使用SpringMVC上传文件的时候，前台传到后台的文件可以是<em><strong>CommonsMultipartFile</strong></em>类型的，也可以是<em><strong>MultipartFile</strong></em>类型，但都无法直接转化为<em><strong>File</strong></em>类型。</p>
+<p>  SpringMVC提供了一种方法可以将传过来的文件直接上传到File指定的文件路径下（new File（path）），<em><strong>MultipartFile.<em><strong>transferTo（</strong></em>File</strong></em>），这样就可以直接将前台传过来的文件直接存在服务器指定的路径下。</p>
+<p>  通过这种思路，transferTo（）的参数需要指定一个File，那意味这需要指定路径，将会在指定的路径下生成文件，那么将这个文件通过new File（path），得到的就是File类型的了。</p>
+<p>  在不希望设置路径，也不希望生成文件的情况下可以使用以下两种方法来转换：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> File <span class="hljs-title function_">convert</span><span class="hljs-params">(MultipartFile file)</span>&#123;<br><br><span class="hljs-type">File</span> <span class="hljs-variable">convFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(file.getOriginalFilename());  <br><br>convFile.createNewFile();<br><br><span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(convFile);<br><br>fos.write(file.getBytes());  <br><br>fos.close();<br><br><span class="hljs-keyword">return</span> convFile;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<br>
 
-<div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> File <span class="hljs-title function_">multipartToFile</span><span class="hljs-params">(MultipartFile multipart)</span> <span class="hljs-keyword">throws</span> IllegalStateException, IOException&#123;<br><br><span class="hljs-type">File</span> <span class="hljs-variable">convFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>( multipart.getOriginalFilename());<br><br>multipart.transferTo(convFile);<br><br><span class="hljs-keyword">return</span> convFile;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>第二种方式相对于第一种较为简单，也更为较快。</p>
+<p>作者：凉初透的风<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9262ef452abe">https://www.jianshu.com/p/9262ef452abe</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chen</li>
+    <li><strong>本文链接：</strong><a href="http://suft.top/2023/12/16/MultipartFile/index.html" title="http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;12&#x2F;16&#x2F;MultipartFile&#x2F;index.html">http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;12&#x2F;16&#x2F;MultipartFile&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag">IO</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2023/12/16/Tcp%E6%8A%A5%E6%96%87/">TCP报文<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
     
-    <a href="/2023/12/16/MultipartFile/" class="post-image">
-      <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2023/12/16/MultipartFile/" title="MultipartFile" >MultipartFile</a></h3>
-        <div class="post-excerpt">
-          <p class="substr-3">  在使用SpringMVC上传文件的时候，前台传到后台的文件可以是CommonsMultipartFile类型的，也可以是MultipartFile类型，但都无法直接转化为File类型。
-  ...</p>
-        </div>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 16, 2023</span>
+  </aside>
+
         
       </div>
     </div>
-  </div>
-</div>
-
-  
-    
-
-<div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2023/12/16/Tcp%E6%8A%A5%E6%96%87/" class="post-image">
-      <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <div class="post-content-wrap">
-        <h3 class="post-title"><a href="/2023/12/16/Tcp%E6%8A%A5%E6%96%87/" title="TCP报文" >TCP报文</a></h3>
-        <div class="post-excerpt">
-          <p class="substr-3">TCP 报文由首部和数据两部分组成，数据部分如果是 HTTP 协议就是 HTTP 报文，所以主要看 TCP 首部，TCP 首部中的各个字段指示决定 TCP 的工作原理。
-9rzlJf
-源端口和目...</p>
-        </div>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 16, 2023</span>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-  
-</section>
-    <section class="paginator">
-  
-</section>
   </div>
 </main>
   
