@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html lang="zh" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模式匹配 - suftyのBlog || 分享所知</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="模式匹配是 C# 中的一项强大功能，它允许你以更直观的...">
+  <meta name="author" content="chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">模式匹配</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">模式匹配</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 16, 2023</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1748</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>模式匹配是 C# 中的一项强大功能，它允许你以更直观的方式处理各种数据形式。C# 中引入了模式匹配以支持更灵活和表达力强的代码。</p>
+<p>以下是一些常见的模式匹配用法：</p>
+<h3 id="1-类型模式匹配："><a href="#1-类型模式匹配：" class="headerlink" title="1. 类型模式匹配："></a>1. 类型模式匹配：</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#">csharpCopy codeobject data = <span class="hljs-number">42</span>;<br><br><span class="hljs-keyword">if</span> (data <span class="hljs-keyword">is</span> <span class="hljs-built_in">int</span> intValue)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;It&#x27;s an integer: <span class="hljs-subst">&#123;intValue&#125;</span>&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;Not an integer&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-Switch-表达式："><a href="#2-Switch-表达式：" class="headerlink" title="2. Switch 表达式："></a>2. Switch 表达式：</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c#">csharpCopy codeobject <span class="hljs-keyword">value</span> = <span class="hljs-string">&quot;Hello&quot;</span>;<br><br><span class="hljs-built_in">string</span> result = <span class="hljs-keyword">value</span> <span class="hljs-keyword">switch</span><br>&#123;<br>    <span class="hljs-built_in">int</span> intValue =&gt; <span class="hljs-string">&quot;It&#x27;s an integer&quot;</span>,<br>    <span class="hljs-built_in">string</span> stringValue =&gt; <span class="hljs-string">$&quot;It&#x27;s a string: <span class="hljs-subst">&#123;stringValue&#125;</span>&quot;</span>,<br>    _ =&gt; <span class="hljs-string">&quot;Unknown type&quot;</span><br>&#125;;<br><br>Console.WriteLine(result);<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-属性模式："><a href="#3-属性模式：" class="headerlink" title="3. 属性模式："></a>3. 属性模式：</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c#">csharpCopy codeclass Person<br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Age &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br><br>Person person = <span class="hljs-keyword">new</span> Person &#123; Name = <span class="hljs-string">&quot;John&quot;</span>, Age = <span class="hljs-number">30</span> &#125;;<br><br><span class="hljs-keyword">if</span> (person <span class="hljs-keyword">is</span> &#123; Name: <span class="hljs-string">&quot;John&quot;</span> &#125; johnPerson)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Found John, aged <span class="hljs-subst">&#123;johnPerson.Age&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-Tuple-模式："><a href="#4-Tuple-模式：" class="headerlink" title="4. Tuple 模式："></a>4. Tuple 模式：</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#">csharpCopy codevar tuple = (<span class="hljs-number">1</span>, <span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-number">3.14</span>);<br><br><span class="hljs-keyword">if</span> (<span class="hljs-function">tuple <span class="hljs-title">is</span> (<span class="hljs-params"><span class="hljs-built_in">int</span> x, <span class="hljs-built_in">string</span> message, <span class="hljs-built_in">double</span> z</span>))</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Values: <span class="hljs-subst">&#123;x&#125;</span>, <span class="hljs-subst">&#123;message&#125;</span>, <span class="hljs-subst">&#123;z&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-Positional-模式："><a href="#5-Positional-模式：" class="headerlink" title="5. Positional 模式："></a>5. Positional 模式：</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c#">csharpCopy codevar point = (x: <span class="hljs-number">3</span>, y: <span class="hljs-number">7</span>);<br><br><span class="hljs-keyword">if</span> (<span class="hljs-function">point <span class="hljs-title">is</span> (<span class="hljs-params"><span class="hljs-number">3</span>, <span class="hljs-number">7</span></span>))</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;Point is at (3, 7)&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-类型测试和转换："><a href="#6-类型测试和转换：" class="headerlink" title="6. 类型测试和转换："></a>6. 类型测试和转换：</h3><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-function">csharpCopy <span class="hljs-title">codeif</span> (<span class="hljs-params">data <span class="hljs-keyword">is</span> <span class="hljs-built_in">int</span> || data <span class="hljs-keyword">is</span> <span class="hljs-built_in">string</span></span>)</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;Data is either int or string&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">if</span> (data <span class="hljs-keyword">is</span> <span class="hljs-built_in">int</span> intValue)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Converted to int: <span class="hljs-subst">&#123;intValue&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>模式匹配使得在处理不同数据类型和结构时更加方便，可以根据数据的形状进行更细粒度的操作。这些示例只是模式匹配的一小部分功能，实际上它可以处理更复杂的情况，例如递归模式、组合模式等。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chen</li>
+    <li><strong>本文链接：</strong><a href="http://suft.top/2023/12/16/%E6%A8%A1%E5%9E%8B%E5%8C%B9%E9%85%8D/index.html" title="http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;12&#x2F;16&#x2F;%E6%A8%A1%E5%9E%8B%E5%8C%B9%E9%85%8D&#x2F;index.html">http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;12&#x2F;16&#x2F;%E6%A8%A1%E5%9E%8B%E5%8C%B9%E9%85%8D&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+        
+  <nav class="nav">
+    <a href="/2023/12/16/modbus%E5%8A%9F%E8%83%BD%E7%A0%81/"><i class="iconfont iconleft"></i>ModBus常用功能码</a>
+    <a></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%B1%BB%E5%9E%8B%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%EF%BC%9A"><span class="toc-text">1. 类型模式匹配：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Switch-%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%9A"><span class="toc-text">2. Switch 表达式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B1%9E%E6%80%A7%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="toc-text">3. 属性模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Tuple-%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="toc-text">4. Tuple 模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Positional-%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="toc-text">5. Positional 模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%B1%BB%E5%9E%8B%E6%B5%8B%E8%AF%95%E5%92%8C%E8%BD%AC%E6%8D%A2%EF%BC%9A"><span class="toc-text">6. 类型测试和转换：</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3167675662 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sudty "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:3167675662@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+  <a href="https://beian.miit.gov.cn/" target="_blank" style="display: inline-block; text-align: center; width: 100%;">湘ICP备2022013790号-1</a>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -70,6 +70,31 @@
       </tags>
   </entry>
   <entry>
+    <title>JVM</title>
+    <url>/2023/12/16/jvm/</url>
+    <content><![CDATA[<p>JVM 内存结构主要包括堆（Heap）、栈（Stack）、方法区（Method Area）、程序计数器（Program Counter）和本地方法栈（Native Method Stack）。下面简要介绍这三个区域的职责和存储内容：</p>
+<h3 id="1-堆（Heap）："><a href="#1-堆（Heap）：" class="headerlink" title="1. 堆（Heap）："></a>1. 堆（Heap）：</h3><ul>
+<li><strong>职责：</strong> 堆是 Java 虚拟机用于存储对象实例的区域。它是被所有线程共享的内存区域。</li>
+<li><strong>存储内容：</strong> 主要存储对象实例，包括实例变量、数组等。堆是在 Java 程序运行时动态分配和回收内存的区域，由垃圾回收器负责管理。</li>
+</ul>
+<h3 id="2-栈（Stack）："><a href="#2-栈（Stack）：" class="headerlink" title="2. 栈（Stack）："></a>2. 栈（Stack）：</h3><ul>
+<li><strong>职责：</strong> 栈是每个线程私有的，用于存储方法调用和局部变量的区域。每个方法调用都会在栈上创建一个栈帧，用于存储方法的局部变量、操作数栈、方法返回地址等信息。</li>
+<li><strong>存储内容：</strong> 主要存储局部变量、方法参数、操作数栈和方法调用的状态。栈是一个后进先出（LIFO）的数据结构。</li>
+</ul>
+<h3 id="3-方法区（Method-Area）："><a href="#3-方法区（Method-Area）：" class="headerlink" title="3. 方法区（Method Area）："></a>3. 方法区（Method Area）：</h3><ul>
+<li><strong>职责：</strong> 方法区是用于存储类的元信息、静态变量、常量池、方法代码等信息的区域。在 Java 8 及之前的版本，方法区被称为永久代。在 Java 8 及之后的版本，永久代被移除，方法区的内容被移到元空间（Metaspace）。</li>
+<li><strong>存储内容：</strong> 主要存储类的元数据信息、静态变量、常量池、方法代码等。方法区是被所有线程共享的。</li>
+</ul>
+<p>需要注意的是，虽然 Java 8 及之后的版本移除了永久代，但方法区的内容仍然存在，只是被称为元空间。元空间的特点是它不再有固定的大小，而是根据需要动态分配。此外，元空间的垃圾回收由 JVM 来处理。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ModBus常用功能码</title>
     <url>/2023/12/16/modbus%E5%8A%9F%E8%83%BD%E7%A0%81/</url>
     <content><![CDATA[<h3 id="0x01-读线圈"><a href="#0x01-读线圈" class="headerlink" title="0x01: 读线圈"></a>0x01: 读线圈</h3><p><strong>Request:</strong></p>
@@ -161,5 +186,28 @@
       <tags>
         <tag>ModBus</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>模式匹配</title>
+    <url>/2023/12/16/%E6%A8%A1%E5%9E%8B%E5%8C%B9%E9%85%8D/</url>
+    <content><![CDATA[<p>模式匹配是 C# 中的一项强大功能，它允许你以更直观的方式处理各种数据形式。C# 中引入了模式匹配以支持更灵活和表达力强的代码。</p>
+<p>以下是一些常见的模式匹配用法：</p>
+<h3 id="1-类型模式匹配："><a href="#1-类型模式匹配：" class="headerlink" title="1. 类型模式匹配："></a>1. 类型模式匹配：</h3><figure class="highlight c#"><table><tr><td class="code"><pre><code class="hljs c#">csharpCopy codeobject data = <span class="hljs-number">42</span>;<br><br><span class="hljs-keyword">if</span> (data <span class="hljs-keyword">is</span> <span class="hljs-built_in">int</span> intValue)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;It&#x27;s an integer: <span class="hljs-subst">&#123;intValue&#125;</span>&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;Not an integer&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-Switch-表达式："><a href="#2-Switch-表达式：" class="headerlink" title="2. Switch 表达式："></a>2. Switch 表达式：</h3><figure class="highlight c#"><table><tr><td class="code"><pre><code class="hljs c#">csharpCopy codeobject <span class="hljs-keyword">value</span> = <span class="hljs-string">&quot;Hello&quot;</span>;<br><br><span class="hljs-built_in">string</span> result = <span class="hljs-keyword">value</span> <span class="hljs-keyword">switch</span><br>&#123;<br>    <span class="hljs-built_in">int</span> intValue =&gt; <span class="hljs-string">&quot;It&#x27;s an integer&quot;</span>,<br>    <span class="hljs-built_in">string</span> stringValue =&gt; <span class="hljs-string">$&quot;It&#x27;s a string: <span class="hljs-subst">&#123;stringValue&#125;</span>&quot;</span>,<br>    _ =&gt; <span class="hljs-string">&quot;Unknown type&quot;</span><br>&#125;;<br><br>Console.WriteLine(result);<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-属性模式："><a href="#3-属性模式：" class="headerlink" title="3. 属性模式："></a>3. 属性模式：</h3><figure class="highlight c#"><table><tr><td class="code"><pre><code class="hljs c#">csharpCopy codeclass Person<br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Age &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br><br>Person person = <span class="hljs-keyword">new</span> Person &#123; Name = <span class="hljs-string">&quot;John&quot;</span>, Age = <span class="hljs-number">30</span> &#125;;<br><br><span class="hljs-keyword">if</span> (person <span class="hljs-keyword">is</span> &#123; Name: <span class="hljs-string">&quot;John&quot;</span> &#125; johnPerson)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Found John, aged <span class="hljs-subst">&#123;johnPerson.Age&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-Tuple-模式："><a href="#4-Tuple-模式：" class="headerlink" title="4. Tuple 模式："></a>4. Tuple 模式：</h3><figure class="highlight c#"><table><tr><td class="code"><pre><code class="hljs c#">csharpCopy codevar tuple = (<span class="hljs-number">1</span>, <span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-number">3.14</span>);<br><br><span class="hljs-keyword">if</span> (<span class="hljs-function">tuple <span class="hljs-title">is</span> (<span class="hljs-params"><span class="hljs-built_in">int</span> x, <span class="hljs-built_in">string</span> message, <span class="hljs-built_in">double</span> z</span>))</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Values: <span class="hljs-subst">&#123;x&#125;</span>, <span class="hljs-subst">&#123;message&#125;</span>, <span class="hljs-subst">&#123;z&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-Positional-模式："><a href="#5-Positional-模式：" class="headerlink" title="5. Positional 模式："></a>5. Positional 模式：</h3><figure class="highlight c#"><table><tr><td class="code"><pre><code class="hljs c#">csharpCopy codevar point = (x: <span class="hljs-number">3</span>, y: <span class="hljs-number">7</span>);<br><br><span class="hljs-keyword">if</span> (<span class="hljs-function">point <span class="hljs-title">is</span> (<span class="hljs-params"><span class="hljs-number">3</span>, <span class="hljs-number">7</span></span>))</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;Point is at (3, 7)&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-类型测试和转换："><a href="#6-类型测试和转换：" class="headerlink" title="6. 类型测试和转换："></a>6. 类型测试和转换：</h3><figure class="highlight c#"><table><tr><td class="code"><pre><code class="hljs c#"><span class="hljs-function">csharpCopy <span class="hljs-title">codeif</span> (<span class="hljs-params">data <span class="hljs-keyword">is</span> <span class="hljs-built_in">int</span> || data <span class="hljs-keyword">is</span> <span class="hljs-built_in">string</span></span>)</span><br>&#123;<br>    Console.WriteLine(<span class="hljs-string">&quot;Data is either int or string&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">if</span> (data <span class="hljs-keyword">is</span> <span class="hljs-built_in">int</span> intValue)<br>&#123;<br>    Console.WriteLine(<span class="hljs-string">$&quot;Converted to int: <span class="hljs-subst">&#123;intValue&#125;</span>&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>模式匹配使得在处理不同数据类型和结构时更加方便，可以根据数据的形状进行更细粒度的操作。这些示例只是模式匹配的一小部分功能，实际上它可以处理更复杂的情况，例如递归模式、组合模式等。</p>
+]]></content>
+      <categories>
+        <category>c#</category>
+      </categories>
   </entry>
 </search>
