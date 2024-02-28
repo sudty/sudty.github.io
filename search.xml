@@ -69,4 +69,97 @@
         <tag>TCP</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ModBus常用功能码</title>
+    <url>/2023/12/16/modbus%E5%8A%9F%E8%83%BD%E7%A0%81/</url>
+    <content><![CDATA[<h3 id="0x01-读线圈"><a href="#0x01-读线圈" class="headerlink" title="0x01: 读线圈"></a>0x01: 读线圈</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte)</li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要读取线圈的起始地址</li>
+<li><strong>线圈数量</strong> (2 bytes): 指定需要读取线圈的数量</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>字节数</strong> (1 byte): 返回的字节数</li>
+<li><strong>线圈状态</strong> (长度为字节数除以8向上取整)</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h3 id="0x03-读保持寄存器"><a href="#0x03-读保持寄存器" class="headerlink" title="0x03: 读保持寄存器"></a>0x03: 读保持寄存器</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要读取寄存器的起始地址</li>
+<li><strong>寄存器数量</strong> (2 bytes): 指定需要读取寄存器的数量</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>数据字节数</strong> (1 byte): 返回的字节数</li>
+<li><strong>数据</strong> (长度为数据字节数中的值)</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h3 id="0x05-写单个线圈"><a href="#0x05-写单个线圈" class="headerlink" title="0x05: 写单个线圈"></a>0x05: 写单个线圈</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要写入线圈的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 需要写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 写入线圈的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h3 id="0x06-写单个寄存器"><a href="#0x06-写单个寄存器" class="headerlink" title="0x06: 写单个寄存器"></a>0x06: 写单个寄存器</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要写入寄存器的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 需要写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 写入寄存器的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h2 id="0x10-写多个寄存器"><a href="#0x10-写多个寄存器" class="headerlink" title="0x10: 写多个寄存器"></a>0x10: 写多个寄存器</h2><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte)</li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要写入寄存器的起始地址</li>
+<li><strong>寄存器数量</strong> (2 bytes): 指定需要写入寄存器的数量</li>
+<li><strong>数据长度</strong> (1 byte): 需要写入的数据的字节数</li>
+<li><strong>数据</strong> (长度为数据长度中的值): 需要写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte)</li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 写入寄存器的起始地址</li>
+<li><strong>寄存器数量</strong> (2 bytes): 写入寄存器的数量</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>c#</category>
+      </categories>
+      <tags>
+        <tag>ModBus</tag>
+      </tags>
+  </entry>
 </search>

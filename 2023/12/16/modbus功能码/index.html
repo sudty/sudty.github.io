@@ -6,12 +6,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>tags - suftyのBlog || 分享所知</title>
+  <title>ModBus常用功能码 - suftyのBlog || 分享所知</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="Share knowledge with you">
+  <meta name="description" content="0x01: 读线圈Request:
+
+地址 (1 by...">
   <meta name="author" content="chen">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -152,7 +154,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center">tags</div>
+    <div class="center">ModBus常用功能码</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -172,7 +174,7 @@
       </li><li class="menu-item">
         <a href="/archives/ " class="underline "> 归档</a>
       </li><li class="menu-item">
-        <a href="/tags/ " class="underline active"> 标签</a>
+        <a href="/tags/ " class="underline "> 标签</a>
       </li><li class="menu-item">
         <a href="/categories/ " class="underline "> 分类</a>
       </li><li class="menu-item">
@@ -184,15 +186,146 @@
   </div>
 </nav>
   <main id="main">
-  <section class="tags">
-    <header class="header">
-  <h1 class="header-title">标签</h1>
-  <p class="header-subtitle">共: 3 个</p>
-</header>
-    <div class="tags-container">
-      <a href="/tags/IO/" style="font-size: 14px; color: #666">IO</a> <a href="/tags/ModBus/" style="font-size: 14px; color: #666">ModBus</a> <a href="/tags/TCP/" style="font-size: 14px; color: #666">TCP</a>
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">ModBus常用功能码</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 16, 2023</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1188</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="0x01-读线圈"><a href="#0x01-读线圈" class="headerlink" title="0x01: 读线圈"></a>0x01: 读线圈</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte)</li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要读取线圈的起始地址</li>
+<li><strong>线圈数量</strong> (2 bytes): 指定需要读取线圈的数量</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>字节数</strong> (1 byte): 返回的字节数</li>
+<li><strong>线圈状态</strong> (长度为字节数除以8向上取整)</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h3 id="0x03-读保持寄存器"><a href="#0x03-读保持寄存器" class="headerlink" title="0x03: 读保持寄存器"></a>0x03: 读保持寄存器</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要读取寄存器的起始地址</li>
+<li><strong>寄存器数量</strong> (2 bytes): 指定需要读取寄存器的数量</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>数据字节数</strong> (1 byte): 返回的字节数</li>
+<li><strong>数据</strong> (长度为数据字节数中的值)</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h3 id="0x05-写单个线圈"><a href="#0x05-写单个线圈" class="headerlink" title="0x05: 写单个线圈"></a>0x05: 写单个线圈</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要写入线圈的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 需要写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 写入线圈的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h3 id="0x06-写单个寄存器"><a href="#0x06-写单个寄存器" class="headerlink" title="0x06: 写单个寄存器"></a>0x06: 写单个寄存器</h3><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要写入寄存器的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 需要写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte) </li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 写入寄存器的起始地址</li>
+<li><strong>数据</strong> (2 bytes): 写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<h2 id="0x10-写多个寄存器"><a href="#0x10-写多个寄存器" class="headerlink" title="0x10: 写多个寄存器"></a>0x10: 写多个寄存器</h2><p><strong>Request:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte)</li>
+<li><strong>功能码</strong> (1 byte)</li>
+<li><strong>起始地址</strong> (2 bytes): 指定需要写入寄存器的起始地址</li>
+<li><strong>寄存器数量</strong> (2 bytes): 指定需要写入寄存器的数量</li>
+<li><strong>数据长度</strong> (1 byte): 需要写入的数据的字节数</li>
+<li><strong>数据</strong> (长度为数据长度中的值): 需要写入的数据</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<ul>
+<li><strong>地址</strong> (1 byte)</li>
+<li><strong>功能码</strong> (1 byte): 读线圈</li>
+<li><strong>起始地址</strong> (2 bytes): 写入寄存器的起始地址</li>
+<li><strong>寄存器数量</strong> (2 bytes): 写入寄存器的数量</li>
+<li><strong>CRC校验码</strong> (2 bytes)</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chen</li>
+    <li><strong>本文链接：</strong><a href="http://suft.top/2023/12/16/modbus%E5%8A%9F%E8%83%BD%E7%A0%81/index.html" title="http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;12&#x2F;16&#x2F;modbus%E5%8A%9F%E8%83%BD%E7%A0%81&#x2F;index.html">http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;12&#x2F;16&#x2F;modbus%E5%8A%9F%E8%83%BD%E7%A0%81&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ModBus/" rel="tag">ModBus</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2023/12/16/Tcp%E6%8A%A5%E6%96%87/"><i class="iconfont iconleft"></i>TCP报文</a>
+    <a></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E8%AF%BB%E7%BA%BF%E5%9C%88"><span class="toc-text">0x01: 读线圈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-%E8%AF%BB%E4%BF%9D%E6%8C%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">0x03: 读保持寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E5%86%99%E5%8D%95%E4%B8%AA%E7%BA%BF%E5%9C%88"><span class="toc-text">0x05: 写单个线圈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-%E5%86%99%E5%8D%95%E4%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">0x06: 写单个寄存器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x10-%E5%86%99%E5%A4%9A%E4%B8%AA%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">0x10: 写多个寄存器</span></a>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
 </main>
   
 
