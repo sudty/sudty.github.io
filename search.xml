@@ -369,4 +369,42 @@
         <category>java</category>
       </categories>
   </entry>
+  <entry>
+    <title>SpringBoot邮箱</title>
+    <url>/2023/11/26/SpringBoot%E9%82%AE%E7%AE%B1/</url>
+    <content><![CDATA[<ul>
+<li><p><strong>Maven依赖</strong></p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>项目配置</strong></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>    <span class="hljs-comment"># 邮箱验证配置信息|必填</span><br>    <span class="hljs-attr">mail:</span><br>       <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.qq.com</span>   <span class="hljs-comment"># 如果你需要使用非qq邮箱，请自行配置host</span><br>       <span class="hljs-attr">username:</span> <span class="hljs-comment"># 请自行配置邮箱地址</span><br>       <span class="hljs-attr">password:</span> <span class="hljs-comment"># 请自行配置邮箱smtp授权码，参考邮箱配置</span><br>       <span class="hljs-attr">port:</span> <span class="hljs-number">587</span><br>       <span class="hljs-attr">default-encoding:</span> <span class="hljs-string">UTF-8</span><br>       <span class="hljs-attr">timeout:</span> <span class="hljs-number">10</span> <span class="hljs-comment"># 验证码有效时间 单位：分钟</span><br>       <span class="hljs-attr">properties:</span><br>         <span class="hljs-attr">mail:</span><br>           <span class="hljs-attr">smtp:</span><br>             <span class="hljs-attr">socketFactoryClass:</span> <span class="hljs-string">javax.net.ssl.SSLSocketFactory</span><br>           <span class="hljs-comment"># 开启debug以后，邮件发送过程的日志会在控制台上打印出来</span><br>           <span class="hljs-attr">debug:</span> <span class="hljs-literal">true</span> <br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>邮箱配置</strong><br>    该邮箱作为发送验证码的用途，在这里我建议使用QQ邮箱，因为QQ邮箱的SMTP服务是免费的，而且不需要进行额外的配置。SMTP服务的配置信息可以在QQ邮箱的设置中找到，登陆<a href="https://mail.qq.com/">你的QQ邮箱</a>，点击左上角的设置按钮，选择<code>设置</code>，选择<code>账户</code>，找到<code>开启POP3/SMTP服务</code>，经过一系列的确认后，你将获得一个<code>授权码</code>，这个授权码就是你的邮箱密码<code>password</code>，你可以在<code>application.yml</code>中的邮箱配置信息中配置它。</p>
+</li>
+<li><p><strong>发送信息</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 邮箱发送器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Resource</span><br><span class="hljs-keyword">private</span> JavaMailSender javaMailSender;<br>  <br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送验证码的邮箱地址</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="hljs-keyword">private</span> String FROM;<br>  <br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 失效时间</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Value(&quot;$&#123;spring.mail.timeout&#125;&quot;)</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">int</span> TIME_OUT_MINUTES;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 发送邮件</span><br><span class="hljs-comment">// 构建一个邮件对象</span><br><span class="hljs-type">SimpleMailMessage</span> <span class="hljs-variable">simpleMailMessage</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleMailMessage</span>();<br><span class="hljs-comment">// 设置邮件发送者</span><br>simpleMailMessage.setFrom(FROM);<br><span class="hljs-comment">// 设置邮件接收者</span><br>simpleMailMessage.setTo(email);<br><span class="hljs-comment">// 设置邮件主题</span><br>simpleMailMessage.setSubject(<span class="hljs-string">&quot;[xx系统]登陆验证码&quot;</span>);<br><span class="hljs-comment">// 设置邮件内容</span><br>simpleMailMessage.setText(<span class="hljs-string">&quot;您的验证码为：&quot;</span> + code + <span class="hljs-string">&quot;，请在&quot;</span> + TIME_OUT_MINUTES + <span class="hljs-string">&quot;分钟内使用！\n【该邮件为系统自动发送，请勿回复】&quot;</span>);<br><span class="hljs-comment">// 将验证码存入redis，设置失效时间TIME_OUT_MINUTES分钟</span><br>redisTemplate.opsForValue().set(email, code, TIME_OUT_MINUTES, java.util.concurrent.TimeUnit.MINUTES);<br><span class="hljs-comment">// 发送邮件</span><br><span class="hljs-keyword">try</span> &#123;<br>    javaMailSender.send(simpleMailMessage);<br>&#125; <span class="hljs-keyword">catch</span> (MailException e) &#123;<br>    e.printStackTrace();<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomException</span>(<span class="hljs-string">&quot;致命错误！&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>登录</strong></p>
+<ol>
+<li>用户输入邮箱号，点击获取验证码。</li>
+<li>后端controller层获取邮箱号。</li>
+<li>后端检查Redis是否存在该邮箱的验证码，如果存在则提示用户“请勿重复获取验证码”</li>
+<li>生成6位随机数（密码），设置过期时间，存入Redis。</li>
+<li>调用service层方法去发送邮件携带验证码给该邮箱。</li>
+<li>用户收到邮件，输入验证码。</li>
+<li>后端获取验证码，与Redis中的密码进行对比。</li>
+<li>对比成功进入系统主界面，失败提示用户“验证码错误，请重新输入验证码”。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
 </search>

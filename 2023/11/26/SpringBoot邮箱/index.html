@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html lang="zh" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SpringBoot邮箱 - suftyのBlog || 分享所知</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="
+Maven依赖
+ 1234&lt;dependenc...">
+  <meta name="author" content="chen">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: true,
+        path: '/search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+        <i class="iconfont iconsearch j-navbar-search"></i>
+      
+    </div>
+    <div class="center">SpringBoot邮箱</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">SpringBoot邮箱</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 26, 2023</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2041</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <ul>
+<li><p><strong>Maven依赖</strong></p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>项目配置</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>    <span class="hljs-comment"># 邮箱验证配置信息|必填</span><br>    <span class="hljs-attr">mail:</span><br>       <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.qq.com</span>   <span class="hljs-comment"># 如果你需要使用非qq邮箱，请自行配置host</span><br>       <span class="hljs-attr">username:</span> <span class="hljs-comment"># 请自行配置邮箱地址</span><br>       <span class="hljs-attr">password:</span> <span class="hljs-comment"># 请自行配置邮箱smtp授权码，参考邮箱配置</span><br>       <span class="hljs-attr">port:</span> <span class="hljs-number">587</span><br>       <span class="hljs-attr">default-encoding:</span> <span class="hljs-string">UTF-8</span><br>       <span class="hljs-attr">timeout:</span> <span class="hljs-number">10</span> <span class="hljs-comment"># 验证码有效时间 单位：分钟</span><br>       <span class="hljs-attr">properties:</span><br>         <span class="hljs-attr">mail:</span><br>           <span class="hljs-attr">smtp:</span><br>             <span class="hljs-attr">socketFactoryClass:</span> <span class="hljs-string">javax.net.ssl.SSLSocketFactory</span><br>           <span class="hljs-comment"># 开启debug以后，邮件发送过程的日志会在控制台上打印出来</span><br>           <span class="hljs-attr">debug:</span> <span class="hljs-literal">true</span> <br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>邮箱配置</strong><br>    该邮箱作为发送验证码的用途，在这里我建议使用QQ邮箱，因为QQ邮箱的SMTP服务是免费的，而且不需要进行额外的配置。SMTP服务的配置信息可以在QQ邮箱的设置中找到，登陆<a target="_blank" rel="noopener" href="https://mail.qq.com/">你的QQ邮箱</a>，点击左上角的设置按钮，选择<code>设置</code>，选择<code>账户</code>，找到<code>开启POP3/SMTP服务</code>，经过一系列的确认后，你将获得一个<code>授权码</code>，这个授权码就是你的邮箱密码<code>password</code>，你可以在<code>application.yml</code>中的邮箱配置信息中配置它。</p>
+</li>
+<li><p><strong>发送信息</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 邮箱发送器</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Resource</span><br><span class="hljs-keyword">private</span> JavaMailSender javaMailSender;<br>  <br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送验证码的邮箱地址</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="hljs-keyword">private</span> String FROM;<br>  <br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 失效时间</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Value(&quot;$&#123;spring.mail.timeout&#125;&quot;)</span><br><span class="hljs-keyword">private</span> <span class="hljs-type">int</span> TIME_OUT_MINUTES;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 发送邮件</span><br><span class="hljs-comment">// 构建一个邮件对象</span><br><span class="hljs-type">SimpleMailMessage</span> <span class="hljs-variable">simpleMailMessage</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleMailMessage</span>();<br><span class="hljs-comment">// 设置邮件发送者</span><br>simpleMailMessage.setFrom(FROM);<br><span class="hljs-comment">// 设置邮件接收者</span><br>simpleMailMessage.setTo(email);<br><span class="hljs-comment">// 设置邮件主题</span><br>simpleMailMessage.setSubject(<span class="hljs-string">&quot;[xx系统]登陆验证码&quot;</span>);<br><span class="hljs-comment">// 设置邮件内容</span><br>simpleMailMessage.setText(<span class="hljs-string">&quot;您的验证码为：&quot;</span> + code + <span class="hljs-string">&quot;，请在&quot;</span> + TIME_OUT_MINUTES + <span class="hljs-string">&quot;分钟内使用！\n【该邮件为系统自动发送，请勿回复】&quot;</span>);<br><span class="hljs-comment">// 将验证码存入redis，设置失效时间TIME_OUT_MINUTES分钟</span><br>redisTemplate.opsForValue().set(email, code, TIME_OUT_MINUTES, java.util.concurrent.TimeUnit.MINUTES);<br><span class="hljs-comment">// 发送邮件</span><br><span class="hljs-keyword">try</span> &#123;<br>    javaMailSender.send(simpleMailMessage);<br>&#125; <span class="hljs-keyword">catch</span> (MailException e) &#123;<br>    e.printStackTrace();<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomException</span>(<span class="hljs-string">&quot;致命错误！&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>登录</strong></p>
+<ol>
+<li>用户输入邮箱号，点击获取验证码。</li>
+<li>后端controller层获取邮箱号。</li>
+<li>后端检查Redis是否存在该邮箱的验证码，如果存在则提示用户“请勿重复获取验证码”</li>
+<li>生成6位随机数（密码），设置过期时间，存入Redis。</li>
+<li>调用service层方法去发送邮件携带验证码给该邮箱。</li>
+<li>用户收到邮件，输入验证码。</li>
+<li>后端获取验证码，与Redis中的密码进行对比。</li>
+<li>对比成功进入系统主界面，失败提示用户“验证码错误，请重新输入验证码”。</li>
+</ol>
+</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chen</li>
+    <li><strong>本文链接：</strong><a href="http://suft.top/2023/11/26/SpringBoot%E9%82%AE%E7%AE%B1/index.html" title="http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;11&#x2F;26&#x2F;SpringBoot%E9%82%AE%E7%AE%B1&#x2F;index.html">http:&#x2F;&#x2F;suft.top&#x2F;2023&#x2F;11&#x2F;26&#x2F;SpringBoot%E9%82%AE%E7%AE%B1&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2023/12/16/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/"><i class="iconfont iconleft"></i>秒杀系统</a>
+    <a></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=3167675662 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/sudty "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:3167675662@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+  <a href="https://beian.miit.gov.cn/" target="_blank" style="display: inline-block; text-align: center; width: 100%;">湘ICP备2022013790号-1</a>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+    <div class="search">
+  <div class="search-container">
+    <div class="search-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <div class="search-input-wrapper">
+      <i class="search-input-icon iconfont iconsearch"></i>
+      <input class="search-input" type="search" id="search-input" placeholder="Search..." autofocus autocomplete="off"
+        autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="search-output" id="search-output"></div>
+  </div>
+</div>
+  
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
